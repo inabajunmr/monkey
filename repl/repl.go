@@ -54,7 +54,7 @@ func Start(in io.Reader, out io.Writer) {
 			return
 		}
 
-		line :=scanner.Text()
+		line := scanner.Text()
 		l := lexer.New(line)
 		p := parser.New(l)
 
@@ -70,9 +70,9 @@ func Start(in io.Reader, out io.Writer) {
 
 }
 
-func printParserErrors(out io.Writer, errors[] string) {
+func printParserErrors(out io.Writer, errors []string) {
 	io.WriteString(out, BIG_PENIS)
 	for _, msg := range errors {
-		io.WriteString(out, "\t" + msg + "\n")
+		io.WriteString(out, "\t"+msg+"\n")
 	}
 }
