@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/inabajunmr/monkey/evaluator"
 	"github.com/inabajunmr/monkey/lexer"
+	"github.com/inabajunmr/monkey/object"
 	"github.com/inabajunmr/monkey/parser"
 	"io"
 )
@@ -51,6 +52,7 @@ func Start(in io.Reader, out io.Writer) {
 	for {
 		fmt.Printf(PROMPT)
 		scanned := scanner.Scan()
+		env := object.NewEnvironment()
 		if !scanned {
 			return
 		}
@@ -65,7 +67,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluated := evaluator.Eval(program)
+		evaluated := evaluator.Eval(program, env)
 		if evaluated != nil {
 			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
