@@ -17,6 +17,7 @@ func TestEvalIntegerExpression(t *testing.T) {
 		{"-5", -5},
 		{"-10", -10},
 		{"5 + 5 + 5 + 5 -10", 10},
+		{"1 + 5 % 4", 2},
 		{"2 * 2 * 2 * 2 * 2", 32},
 		{"-50 + 100 + -50", 0},
 		{"5 * 2 + 10", 20},
@@ -279,4 +280,16 @@ func TestFunctionApplication(t *testing.T) {
 	for _, tt := range tests {
 		testIntegerObject(t, testEval(tt.input), tt.expected)
 	}
+}
+
+func TestClosures(t *testing.T) {
+	input := `
+let newAdder = fn(x) {
+	fn(y) { x + y };
+};
+
+let addTwo = newAdder(2);
+addTwo(2);`
+
+	testIntegerObject(t, testEval(input), 4)
 }

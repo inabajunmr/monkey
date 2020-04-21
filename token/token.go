@@ -20,6 +20,7 @@ const (
 	BANG     = "!"
 	ASTERISK = "*"
 	SLASH    = "/"
+	REMINDER = "%"
 
 	LT = "<"
 	GT = ">"
