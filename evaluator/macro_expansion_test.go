@@ -70,11 +70,11 @@ func TestExpandMacros(t *testing.T) {
 		input    string
 		expected string
 	}{
-		//{
-		//	`let infixExpression = macro() { quote(1 + 2); };
-		//			infixExpression();'`,
-		//			`(1 + 2)`,
-		//},
+		{
+			`let infixExpression = macro() { quote(1 + 2); };
+					infixExpression();'`,
+			`(1 + 2)`,
+		},
 		{
 			`let reverse = macro(a, b) {quote(unquote(b) - unquote(a)); };
 								reverse(2 + 2, 10 - 5)`,
